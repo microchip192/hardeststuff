@@ -1,1 +1,364 @@
-# hardeststuff
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HARDEST TOPICS
+    </title>
+    <style>
+        /* Theme Variables */
+        :root {
+            --bg-dark: #0b0e14;
+            --bg-card: #151a24;
+            --bg-hover: #1e2533;
+            --accent-color: #7289da;
+            --text-main: #f6f8fa;
+            --text-muted: #8b949e;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Navigation Header */
+        header {
+            background-color: var(--bg-card);
+            padding: 1rem 2rem;
+            border-bottom: 2px solid #21262d;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h1 {
+            font-size: 1.5rem;
+            letter-spacing: 1px;
+            color: var(--text-main);
+        }
+
+        header span {
+            color: var(--accent-color);
+        }
+
+        /* Main Workspace Layout */
+        .main-container {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
+        }
+
+        /* Left Side: Scrollable Level List */
+        .list-sidebar {
+            width: 35%;
+            min-width: 300px;
+            border-right: 2px solid #21262d;
+            overflow-y: auto;
+            padding: 1rem;
+            background-color: #0d1117;
+        }
+
+        .level-item {
+            background-color: var(--bg-card);
+            padding: 1rem;
+            margin-bottom: 0.75rem;
+            border-radius: 6px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            transition: all 0.2s ease;
+            border: 1px solid transparent;
+        }
+
+        .level-item:hover {
+            background-color: var(--bg-hover);
+            border-color: var(--accent-color);
+        }
+
+        .level-item.active {
+            background-color: var(--bg-hover);
+            border-color: var(--accent-color);
+            box-shadow: 0 0 10px rgba(114, 137, 218, 0.2);
+        }
+
+        .level-rank {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-right: 1rem;
+            color: var(--accent-color);
+            min-width: 40px;
+        }
+
+        .level-info h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .level-info p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* Right Side: Dynamic Details Panel */
+        .details-panel {
+            width: 65%;
+            overflow-y: auto;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .level-title-large {
+            font-size: 2.5rem;
+            font-weight: 800;
+        }
+
+        .meta-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+        }
+
+        .meta-card {
+            background-color: var(--bg-card);
+            padding: 1rem;
+            border-radius: 6px;
+            border: 1px solid #21262d;
+        }
+
+        .meta-card label {
+            display: block;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            margin-bottom: 0.25rem;
+        }
+
+        .meta-card value {
+            font-size: 1.1rem;
+            font-weight: bold;
+        }
+
+        /* Video Embed Container */
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            background-color: #000;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid #21262d;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>HARDEST<span>STUFF</span></h1>
+        <p style="color: var(--text-muted);">Pointercrate Template</p>
+    </header>
+
+    <div class="main-container">
+        
+        <div class="list-sidebar" id="level-list">
+            </div>
+
+        <div class="details-panel" id="details-panel">
+            </div>
+
+    </div>
+
+    <script>
+        // 1. Data Store: Array of level objects mimicking a real list data structures
+        const levelsData = [
+            {
+                rank: 1,
+                name: "Quantum Physics",
+                creator: "Max Planck",
+                date: "December 14th, 1900",
+                category: "Physics",
+                videoUrl: "https://www.youtube.com/watch?v=Usu9xZfabPM" // Replace with real showcase URLs
+            },
+            {               
+                rank: 2,
+                name: "Millennial Prize Problems",
+                creator: "Clay Mathematics Institute",
+                date: "May 24th, 2000",
+                category: "71392200",
+                videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ"
+            },
+            {
+                rank: 3,
+                name: "A製造業 (Slaughterhouse)",
+                creator: "IcedCave",
+                date: "Doggie",
+                category: "75371244",
+                videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ"
+            },
+            {
+                rank: 4,
+                name: "Tartarus",
+                creator: "Riot",
+                date: "Dolphy",
+                category: "57493012",
+                videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ"
+            },
+            {
+                rank: 5,
+                name: "Sonic Wave Infinity",
+                creator: "APTeam",
+                date: "Xanii",
+                category: "69438011",
+                videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ"
+            },
+            {
+                rank: 6,
+                name: "Sonic Wave Infinity",
+                creator: "APTeam",
+                date: "Xanii",
+                category: "69438011",
+                videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ"
+            },
+            {
+                rank: 7,
+                name: "Sonic Wave Infinity",
+                creator: "APTeam",
+                date: "Xanii",
+                category: "69438011",
+                videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ"
+            },
+            {
+                rank: 8,
+                name: "Sonic Wave Infinity",
+                creator: "APTeam",
+                date: "Xanii",
+                category: "69438011",
+                videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ"
+            },
+            {
+                rank: 9,
+                name: "Sonic Wave Infinity",
+                creator: "APTeam",
+                date: "Xanii",
+                category: "69438011",
+                videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ"
+            },
+            {
+                rank: 10,
+                name: "Sonic Wave Infinity",
+                creator: "APTeam",
+                date: "Xanii",
+                category: "69438011",
+                videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ"
+            },
+            {
+                rank: 11,
+                name: "Sonic Wave Infinity",
+                creator: "APTeam",
+                date: "Xanii",
+                category: "69438011",
+                videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ"
+            },
+            {
+                rank: 12,
+                name: "Sonic Wave Infinity",
+                creator: "APTeam",
+                date: "Xanii",
+                category: "69438011",
+                videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ"
+            }
+
+        ];
+
+        const listSidebar = document.getElementById('level-list');
+        const detailsPanel = document.getElementById('details-panel');
+
+        // 2. Build and Render the Left Sidebar Menu
+        function renderSidebar() {
+            listSidebar.innerHTML = ''; // clear initial content
+            
+            levelsData.forEach((level, index) => {
+                const item = document.createElement('div');
+                item.classList.add('level-item');
+                if (index === 0) item.classList.add('active'); // highlight top tier initially
+
+                item.innerHTML = `
+                    <div class="level-rank">#${level.rank}</div>
+                    <div class="level-info">
+                        <h3>${level.name}</h3>
+                        <p>By ${level.creator}</p>
+                    </div>
+                `;
+
+                // Add interactive click listener to swap views
+                item.addEventListener('click', () => {
+                    // Update active UI classes
+                    document.querySelectorAll('.level-item').forEach(i => i.classList.remove('active'));
+                    item.classList.add('active');
+                    
+                    // Show target level data
+                    renderDetails(level);
+                });
+
+                listSidebar.appendChild(item);
+            });
+        }
+
+        // 3. Render the Details View on the Right Pane
+        function renderDetails(level) {
+            detailsPanel.innerHTML = `
+                <div class="level-title-large">${level.name}</div>
+                
+                <div class="meta-grid">
+                    <div class="meta-card">
+                        <label>Publisher / Creator</label>
+                        <value>${level.creator}</value>
+                    </div>
+                    <div class="meta-card">
+                        <label>Date</label>
+                        <value>${level.date}</value>
+                    </div>
+                    <div class="meta-card">
+                        <label>Category</label>
+                        <value>${level.category}</value>
+                    </div>
+                </div>
+
+                <h3 style="margin-top: 1rem;">Overview</h3>
+                <div class="video-container">
+                    <iframe 
+                        src="${level.videoUrl}" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+            `;
+        }
+
+        // Initialize App UI layout on startup
+        renderSidebar();
+        renderDetails(levelsData[0]); // Load rank #1 by default
+    </script>
+</body>
+</html>
