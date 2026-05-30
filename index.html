@@ -169,6 +169,22 @@
             width: 100%;
             height: 100%;
             border: none;
+            .top-button {
+    color: var(--text-main);
+    background-color: var(--bg-hover);
+    padding: 8px 14px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    border: 1px solid var(--border-color);
+    transition: 0.2s ease;
+}
+
+.top-button:hover {
+    background-color: var(--accent-color);
+    color: white;
+    transform: scale(1.05);
+}
         }
     </style>
 </head>
@@ -176,7 +192,7 @@
 
     <header>
         <h1>HARDEST<span>STUFF</span></h1>
-        <p style="color: var(--text-muted);">Pointercrate Template</p>
+        <a href="about.html" class="top-button">About Me</a>
     </header>
 
     <div class="main-container">
